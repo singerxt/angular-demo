@@ -1,0 +1,48 @@
+<div class="search">
+  <form [formGroup]="searchConfigFormGroup">
+    <label class="search__search">
+      <input formControlName="stringSearch" type="text" placeholder="Search by title, keyword or file type" />
+    </label>
+    <div class="search__detail--wrapper">
+      <label>
+        <span>filter by</span>
+        <select class="search__select" formControlName="filterBy">
+          <option *ngFor="let mediaType of mediaTypes">
+              {{ mediaType }}
+          </option>
+        </select>
+      </label>
+      <label>
+        <span>sort by</span>
+        <select class="search__select" formControlName="sortType">
+          <option *ngFor="let sortType of sortTypes">
+              {{ sortType }}
+          </option>
+        </select>
+      </label>
+      <label>
+        <span>sort order</span>
+        <select class="search__select" formControlName="sortOrder">
+          <option *ngFor="let sortOrder of sortOrders">
+              {{ sortOrder }}
+          </option>
+        </select>
+      </label>
+      <button class="search__button" (click)="initForm()">Clear</button>
+    </div>
+  </form>
+  <section class="search__result">
+    <ul>
+      <li>
+        <span>Title</span>
+        <span>Type</span>
+        <span>Release Date</span>
+      </li>
+      <li *ngFor="let item of data">
+        <span>{{ item.title }}</span>
+        <span>{{ item.type }}</span>
+        <span>{{ item.releaseDate | date }}</span>
+      </li>
+    </ul>
+  </section>
+</div>
